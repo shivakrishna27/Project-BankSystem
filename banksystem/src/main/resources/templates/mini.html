@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mini Statement - Bank Management System</title>
+    <style>
+        body {  background-color:#ffccff; font-family: Arial, sans-serif; text-align: center; }
+        .container { color: black;  background-color: white; border-radius: 10px; width: 400px; margin: 50px auto; padding: 30px;}
+        table { color: black; width: 100%; border-collapse: collapse; margin: 20px;}
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #cc0000;
+        }
+        .amt { color: green; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Mini Statement</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+        <tr th:each="tx : ${transactions}">
+            <td th:text="${#dates.format(tx.date, 'dd-MM-yyyy HH:mm:ss')}"></td>
+            <td th:text="${tx.type}"></td>
+            <td th:text="${tx.amount}" class="amt"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(transactions)}">
+            <td colspan="3">No transactions found</td>
+        </tr>
+    </table>
+    <a href="/dashboard" class="btn">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard - Bank Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+        .container {
+            background-image: url("backbg.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        .btn1 {
+            background-color: red;
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn1:hover {
+            background-color: #cc0000;
+        }
+        .btn {
+            background-color: #66ff66;
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #00ff55;
+        }
+        .btn2 {
+            background-color: #ffff66;
+            color: black;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn2:hover {
+            background-color: #e6e600;
+        }
+        .btn3 {
+            background-color: white;
+            color: black;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn3:hover {
+            background-color: transparent;
+        }
+        .in-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: right;
+            margin-bottom: 2px;
+        }
+        .top {
+            color: white;
+            padding: 20px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="top">Dashboard</h1>
+    <p class="top">Balance: <span th:text="${balance}"></span></p>
+    <div class="in-line">
+        <a href="/deposit" class="btn">Deposit</a>
+        <a href="/withdraw" class="btn1">Withdraw</a>
+        <a href="/balance" class="btn2">Check Balance</a>
+        <a href="/mini" class="btn">Mini Statement</a>
+        <a href="/recentTransactions" class="btn2">Recent Transactions</a>
+    </div>
+    <a href="/gc-demo" class="btn3">Garbage Collection Demo</a>
+    <div><a href="/login" class="btn1">Back</a></div>
+</div>
+</body>
+</html>

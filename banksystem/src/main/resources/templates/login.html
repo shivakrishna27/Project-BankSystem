@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - My BANK System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #99ffcc;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 350px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .img { width: 110px; height: 120px; }
+        h1 {
+            color: #333;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .success {
+            color: green;
+            font-size: 0.9em;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .btn {
+            background-color: #1a75ff;
+            color: white;
+            padding: 7px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 9px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #1a53ff;
+        }
+
+        label.required::after {
+            content: "*";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="/bank.png" class="img"/>
+    <h1>Welcome to My BANK!</h1>
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+    <div class="success" th:if="${param.success}" th:text="${param.success}"></div>
+    <form th:action="@{/login}" th:object="${user}" method="post">
+        <label class="required">Card Number:</label><br/>
+        <input type="text" th:field="*{cardNumber}" required/><br/>
+        <div class="error" th:errors="*{cardNumber}"></div>
+        <label class="required">PIN:</label><br/>
+        <input type="password" th:field="*{pin}" required/><br/>
+        <div class="error" th:errors="*{pin}"></div>
+        <button type="submit">Sign In</button>
+    </form>
+    <a href="/signup" class="btn">Sign Up</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recent Transactions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .nav-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .nav-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        .no-transactions {
+            text-align: center;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Recent Transactions</h2>
+    <div th:if="${recentTransactions != null and not #lists.isEmpty(recentTransactions)}">
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Transaction Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction, iterStat : ${recentTransactions}">
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${transaction}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${recentTransactions == null or #lists.isEmpty(recentTransactions)}" class="no-transactions">
+        <p>No recent transactions available.</p>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard">Back to Dashboard</a>
+        <a href="/deposit">Deposit</a>
+        <a href="/withdraw">Withdraw</a>
+        <a href="/balance">Check Balance</a>
+        <a href="/mini">Mini Statement</a>
+    </div>
+</div>
+</body>
+</html>

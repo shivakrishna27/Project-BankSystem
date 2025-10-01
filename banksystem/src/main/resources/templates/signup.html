@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SignUp - My BANK System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffcc99;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+        }
+        .form-row label {
+            width: 30%;
+            text-align: right;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 60%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        label.required::after {
+            content: "*";
+            color: red;
+        }
+        .note {
+            font-size: 0.8em;
+            color: #555;
+            margin-left: 32%;
+            text-align: left;
+        }
+        .img { width: 90px; height: 100px; }
+        .lastimg { width: 90px; height: 100px; margin-left: 30%; }
+        .in-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: red;
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 12px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+    <script>
+        function formatDateInput(input) {
+         const value = input.value;
+          if (value) {
+           const parts = value.split('-'); // YYYY-MM-DD
+           if (parts.length === 3) {
+           input.value = ${parts[2]}-${parts[1]}-${parts[0]}; // Convert to DD-MM-YYYY } } }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="in-line">
+        <img src="/provider.png" class="img"/>
+        <h1>SignUp to My BANK System</h1>
+        <img src="/card.png" class="img"/>
+    </div>
+
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+
+        <div class="form-row">
+            <label class="required">Full Name:</label>
+            <input type="text" th:field="*{name}" required placeholder="Enter CAPITAL Only"/>
+        </div>
+        <div class="error" th:errors="*{name}"></div>
+
+        <div class="form-row">
+            <label>Father's Name:</label>
+            <input type="text" th:field="*{fatherName}"/>
+        </div>
+
+        <div>
+            <div class="form-row">
+                <label>Date of Birth:</label>
+                <input type="date" id="dob" th:field="*{dob}" max="2025-09-10"/>
+            </div>
+            <div class="note">Format: DD-MM-YYYY (e.g., 06-10-2025)</div>
+            <div class="error" th:errors="*{dob}"></div>
+        </div>
+
+        <div class="form-row">
+            <label>Gender:</label>
+            <select th:field="*{gender}">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label>Email:</label>
+            <input type="email" th:field="*{email}" placeholder="example@gmail.com"/>
+        </div>
+        <div class="error" th:errors="*{email}"></div>
+
+        <div class="form-row">
+            <label>Address:</label>
+            <textarea th:field="*{address}"></textarea>
+        </div>
+
+        <div class="form-row"><label>City:</label><input type="text" th:field="*{city}"/></div>
+        <div class="form-row"><label>PIN Code:</label><input type="text" th:field="*{pinCode}" placeholder="Only 6-digits"/></div>
+        <div class="form-row"><label>State:</label><input type="text" th:field="*{state}"/></div>
+        <div class="form-row"><label>Religion:</label><input type="text" th:field="*{religion}"/></div>
+        <div class="form-row"><label>Category:</label><input type="text" th:field="*{category}"/></div>
+        <div class="form-row"><label>Income:</label><input type="text" th:field="*{income}"/></div>
+        <div class="form-row"><label>Education:</label><input type="text" th:field="*{education}"/></div>
+        <div class="form-row"><label>Occupation:</label><input type="text" th:field="*{occupation}"/></div>
+        <div class="form-row"><label>PAN:</label><input type="text" th:field="*{pan}"/></div><div class="error" th:errors="*{pan}"></div>
+        <div class="form-row"><label>Aadhar:</label><input type="text" th:field="*{aadhar}" placeholder="Enter 12-digits"/></div><div class="error" th:errors="*{aadhar}"></div>
+
+        <div class="form-row">
+            <label>Account Type:</label>
+            <select th:field="*{accountType}">
+                <option value="">Select</option>
+                <option value="Savings">Savings</option>
+                <option value="Current">Current</option>
+            </select>
+        </div>
+
+        <div class="form-row"><label>Services:</label><input type="text" th:field="*{services}"/></div>
+        <div class="form-row"><label>Senior Citizen:</label><input type="checkbox" th:field="*{seniorCitizen}"/></div>
+        <div class="form-row"><label>Existing Account:</label><input type="checkbox" th:field="*{existingAccount}"/></div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <a href="/login" class="btn">Back to Login</a>
+</div>
+</body>
+</html>
