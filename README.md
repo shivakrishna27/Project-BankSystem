@@ -61,5 +61,4 @@ requests garbage collection with System.gc(),and logs memory usage before and af
 7.Exception Handling: Uses try-catch in controllers (AuthController.java) and services, throwing RuntimeException for errors ( insufficient balance).
 8.Collections Framework: Utilizes List<Transaction> in BankService.java for transaction history and balance calculation.
 9.Java 8 Features: Includes Optional in UserRepository.java and forEach in AuthController.java for error handling.
-10.Garbage Collection: Demonstrates memory management in AuthService.java via demonstrateGarbageCollection, triggered by /gc-demo.
-11.JDBC basics to connect the MySQL DataBase connection........
+10.JDBC basics to connect the MySQL DataBase connection........
